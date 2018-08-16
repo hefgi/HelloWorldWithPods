@@ -322,10 +322,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HelloWorldWithPods/Pods-HelloWorldWithPods-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AAPhotoCircleCrop/AAPhotoCircleCrop.framework",
+				"${BUILT_PRODUCTS_DIR}/DependencyExample/DependencyExample.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AAPhotoCircleCrop.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DependencyExample.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

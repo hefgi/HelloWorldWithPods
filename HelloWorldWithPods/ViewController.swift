@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import DependencyExample
+import AAPhotoCircleCrop
 
 class ViewController: UIViewController {
 
@@ -20,6 +22,16 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func showDependencyTapped(_ sender: Any) {
+        let vc = DependencyViewController.instantiate()
+        vc.delegate = self
+        present(vc, animated: true, completion: nil)
+    }
+}
 
+extension ViewController: DependencyViewControllerDelegate {
+    func viewController(_ viewController: DependencyViewController, dismissTappedAnimated animated: Bool) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
 }
 

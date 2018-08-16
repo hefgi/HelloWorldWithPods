@@ -8,6 +8,10 @@ target 'HelloWorldWithPods' do
   # Pods for HelloWorldWithPods
   pod 'AAPhotoCircleCrop', :git => 'https://github.com/hefgi/AAPhotoCircleCrop.git'
 
+  # Pod private dependency Example
+  source 'https://github.com/hefgi/DependencyExampleSpecs.git'
+  pod 'DependencyExample', :git => 'https://github.com/hefgi/DependencyExample.git'
+
   target 'HelloWorldWithPodsTests' do
     inherit! :search_paths
     # Pods for testing
