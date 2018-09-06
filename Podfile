@@ -1,5 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '11.0'
+source 'https://github.com/CocoaPods/Specs.git'
 
 target 'HelloWorldWithPods' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -7,6 +8,9 @@ target 'HelloWorldWithPods' do
 
   # Pods for HelloWorldWithPods
   pod 'AAPhotoCircleCrop', :git => 'https://github.com/hefgi/AAPhotoCircleCrop.git'
+  pod 'SwiftLint'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   # Pod private dependency Example
   source 'https://github.com/hefgi/DependencyExampleSpecs.git'

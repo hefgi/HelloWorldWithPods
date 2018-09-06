@@ -9,8 +9,8 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 # Fabric Tokens
-# API_TOKEN = 'f5f26ce539a66b8dfba93162b688d44dd8af4cef'
-# BUILD_SECRET = 'ee11612934e155f7c627574af4f4e367f0a69f08ba038e074428d89ad6788a40'
+API_TOKEN = ''
+BUILD_SECRET = ''
 
 default_platform(:ios)
 
@@ -28,7 +28,7 @@ platform :ios do
       #    "AppDelegate.swift",
       #    "path/to/project/Model.swift"
       #],
-      # ignore_exit_status: true,                     # Allow fastlane to continue even if SwiftLint returns a non-zero exit status (Default: false)
+      ignore_exit_status: true,                     # Allow fastlane to continue even if SwiftLint returns a non-zero exit status (Default: false)
       # quiet: false,                                 # Don't print status logs like 'Linting ' & 'Done linting' (Default: false)
       # strict: true                                  # Fail on warnings? (Default: false)
     )
@@ -38,7 +38,7 @@ platform :ios do
     # https://docs.fastlane.tools/actions/scan/
   	scan(
       workspace: "HelloWorldWithPods.xcworkspace",
-      scheme: "HelloWorldWithPodsTests",
+      scheme: "HelloWorldWithPods",
       devices: ["iPhone 7"],
       code_coverage: true,
       clean: true,
@@ -48,27 +48,31 @@ platform :ios do
       output_style: "basic",
       buildlog_path: "build",
       derived_data_path: "build",
-      slack_url: "https://hooks.slack.com/services/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"
+      #slack_url: "https://hooks.slack.com/services/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"
     )
 
     # https://docs.fastlane.tools/actions/xcov/
     xcov(
       workspace: "HelloWorldWithPods.xcworkspace",
-      scheme: "HelloWorldWithPodsTests",
+      scheme: "HelloWorldWithPods",
       output_directory: "xcov_output",
       derived_data_path: "build",
-      legacy_support: "true",
+      legacy_support: "false",
       ignore_file_path: "Pods",
       only_project_targets: true,
-      slack_url: "https://hooks.slack.com/services/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"
+      #slack_url: "https://hooks.slack.com/services/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"
     )
 
   end
 
   lane :beta do
-  	build_app(scheme: "HelloWorldWithPods", export_method: "ad-hoc")
+  	build_app(
+      scheme: "HelloWorldWithPods", 
+      export_method: "development"
+    )
+
     upload_crashlytics(groups: "testers")
-    notify_on_slack
+    #notify_on_slack
   end
 
   # Lane to be run by Jenkins
@@ -79,7 +83,7 @@ platform :ios do
       cobertura_xml: true, 
       jenkins: true, 
       verbose: true,
-      scheme: "HelloWorldWithPodsTests", 
+      scheme: "HelloWorldWithPods", 
       build_directory: "build", 
       output_directory: "build", 
       proj: "HelloWorldWithPods.xcodeproj",
@@ -108,7 +112,7 @@ platform :ios do
     crashlytics(
       api_token: API_TOKEN,
       build_secret: BUILD_SECRET,
-      groups: groups
+      #groups: groups
     )
     upload_symbols_to_crashlytics(api_token: API_TOKEN)
   end
